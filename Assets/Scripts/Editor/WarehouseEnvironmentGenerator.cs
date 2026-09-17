@@ -19,21 +19,24 @@ namespace Warehouse.EditorTools
     ///
     /// Les dimensions ci-dessous sont des valeurs de départ raisonnables : à ajuster
     /// selon l'échelle réelle indiquée sur le plan (légende ~90m x 43m).
+    /// Passer en internal const pour pouvoir les utiliser dans les autre generator
     /// </summary>
     public static class WarehouseEnvironmentGenerator
     {
-        private const string RootName = "Entrepot_Environnement";
+        internal const string RootName = "Entrepot_Environnement";
 
-        private const float SingleAisleWidth = 4f;   // largeur d'une allée simple (A1, A16)
-        private const float DoubleAisleWidth = 8f;    // largeur totale d'un module à 2 allées (4m chacune)
-        private const float AisleDepth = 43f;         // profondeur des rayonnages (cf. légende du plan)
-        private const float AisleHeight = 4f;
-        private const float CorridorWidth = 6f;
+        internal const float SingleAisleWidth = 4f;   // largeur d'une allée simple (A1, A16)
+        internal const float DoubleAisleWidth = 8f;    // largeur totale d'un module à 2 allées (4m chacune)
+        internal  const float AisleDepth = 43f;         // profondeur des rayonnages (cf. légende du plan)
+        internal const float AisleHeight = 4f;
+        internal const float CorridorWidth = 6f;
 
-        private const float ZoneStripDepth = 6f;      // profondeur de la bande où vivent les zones départ/dépôt
-        private const float ZoneClearance = 14f;      // <-- espace vide entre les zones et la première allée
-        private const float CornerInset = 6f;         // marge entre le bord latéral de l'entrepôt et le pad de zone
-        private const float FloorMargin = 4f;         // marge de sol au-delà des zones et des allées
+        internal const int ShelfLevels = 4;
+ 
+        internal const float ZoneStripDepth = 6f;      // profondeur de la bande où vivent les zones départ/dépôt
+        internal const float ZoneClearance = 14f;      // <-- espace vide entre les zones et la première allée
+        internal const float CornerInset = 6f;         // marge entre le bord latéral de l'entrepôt et le pad de zone
+        internal const float FloorMargin = 4f;         // marge de sol au-delà des zones et des allées
 
         private const int DefaultRobotCount = 5;
         private const float RobotSpacing = 2f;
@@ -191,7 +194,6 @@ namespace Warehouse.EditorTools
             unit.transform.position = position;
 
             const float postThickness = 0.12f;
-            const int shelfLevels = 4;
 
             float[] xs = { -(width / 2f - postThickness / 2f), (width / 2f - postThickness / 2f) };
             float[] zs = { -(depth / 2f - postThickness / 2f), (depth / 2f - postThickness / 2f) };
@@ -209,9 +211,9 @@ namespace Warehouse.EditorTools
                 }
             }
 
-            for (int level = 0; level < shelfLevels; level++)
+            for (int level = 0; level < ShelfLevels; level++)
             {
-                float y = 0.1f + (height - 0.2f) * level / (shelfLevels - 1);
+                float y = 0.1f + (height - 0.2f) * level / (ShelfLevels - 1);
                 var board = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 board.name = $"Plateau_{level}";
                 board.transform.SetParent(unit.transform);
