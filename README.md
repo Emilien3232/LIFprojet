@@ -20,6 +20,7 @@ Une fois le produit déposé, la commande est considérée comme terminée et le
 Le déroulement prévu est le suivant :
 
 ```text
+test
 Création d'une commande
         ↓
 La commande contient un produit
