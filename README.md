@@ -68,7 +68,7 @@ Projet/
 │   ├── NavMesh/
 │   │
 │   ├── Scripts/
-│   │   ├── Warehouse/
+│   │   ├── Entrepot/
 │   │   │   ├── Warehouse.cs
 │   │   │   ├── Zone.cs
 │   │   │   └── Emplacement.cs
